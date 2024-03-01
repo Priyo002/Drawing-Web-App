@@ -19,7 +19,6 @@ io.on('connection',(socket)=>{
 
     socket.on('mouse',(data)=>{
         socket.broadcast.emit('mouse',data);
-        //console.log(data);
     })
     socket.on('disconnect', function () {
         console.log('User disconnected');
