@@ -27,7 +27,7 @@ io.on('connection',(socket)=>{
 
 
 http.listen(process.env.PORT || 3000,()=>{
-    console.log("Server is runnig http://localhost:3000");
+    console.log("Server is runnig ");
 })
 
 
