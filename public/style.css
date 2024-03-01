@@ -1,0 +1,61 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+
+#color-box {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f0f0f0; /* Set your desired background color here */
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.color-row {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.color-button {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.eraser-button {
+  width: 40px;
+  height: 25px;
+  border: 1px solid #aaaaaa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px;
+  cursor: pointer;
+  background-color: #dddddd; /* Set the eraser color here */
+}
+
+.eraser-label {
+  font-size: 12px;
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.slider-label {
+  margin-right: 10px;
+}
+
+.slider {
+  width: 80px;
+}
