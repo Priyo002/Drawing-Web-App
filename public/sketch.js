@@ -94,25 +94,3 @@ eraserStrengthSlider.addEventListener('input', () => {
 });
 
 
-
-let pageCount = 1;
-
-function createNewPage() {
-  const newPage = document.createElement('div');
-  newPage.className = 'page';
-  newPage.id = `page${pageCount + 1}`;
-  newPage.textContent = `Page ${pageCount + 1}`;
-  pageCount++;
-
-  // Append the new page to the document
-  document.body.appendChild(newPage);
-}
-
-// Add a listener for the scroll event
-document.addEventListener('scroll', function (event) {
-  // Check if the user is scrolling up
-  if (event.deltaY < 0) {
-    createNewPage();
-  }
-});
-
