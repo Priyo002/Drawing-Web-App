@@ -30,7 +30,7 @@ app.get('/:id',(req,res)=>{
     io.on('connection',(socket)=>{
         console.log("New Connection " + socket.id);
     
-        socket.on('mouse',(data)=>{
+        socket.on('mouse',(data,id)=>{
             io.sockets.emit('mouse',data);
         })
         socket.on('disconnect', function () {

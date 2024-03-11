@@ -15,6 +15,16 @@ function setup() {
     stroke(strokeColor);
 
     socket.on('mouse',(data) => {
+        // console.log(data);
+        // console.log(id);
+        
+        // var currentUrl = window.location.href;
+        // // Display the URL
+        // console.log("Current URL: " + currentUrl);
+        // console.log(currentUrl.split("/")[3])
+        // const currentId = currentUrl.split("/")[3];
+        // if(currentId!==id) return;
+
         if(data.era){
             erase(255,255);
             strokeWeight(data.eraserStroke);
@@ -53,7 +63,10 @@ function touchMoved() {
         strokeColor: strokeColor,
         eraserStroke: eraserStroke
     }
-    
+    var currentUrl = window.location.href;
+        
+    const currentId = currentUrl.split("/")[3];
+        //if(currentId!==id) return;
     socket.emit('mouse',data);
     return false;
     
