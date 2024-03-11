@@ -15,5 +15,5 @@ document.getElementById('Ckey').addEventListener('click',async ()=>{
 })
 document.getElementById('btt').addEventListener('click',()=>{
     const t = document.getElementById('txtt').value;
-    console.log(t);
+    window.open(awsurl + "/" + t);
 })
