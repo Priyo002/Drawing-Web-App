@@ -1,5 +1,5 @@
 const localurl="http://localhost:3000"
-const awsurl="http://ec2-15-206-170-218.ap-south-1.compute.amazonaws.com"
+const awsurl="https://www.drawhub.online"
          
 document.getElementById('Ckey').addEventListener('click',async ()=>{
     const resp = await fetch(awsurl+"/createKey",{
