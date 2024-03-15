@@ -10,7 +10,7 @@ document.getElementById('Ckey').addEventListener('click',async ()=>{
     })
     const temp = await resp.json();
     const str = String(temp.key);
-    console.log(temp.key);
+    //console.log(temp.key);
     window.open(awsurl + "/" + str);
 })
 document.getElementById('btt').addEventListener('click',()=>{

@@ -14,16 +14,12 @@ function setup() {
     strokeWeight(drawingStroke);
     stroke(strokeColor);
 
-    socket.on('mouse',(data) => {
-        // console.log(data);
-        // console.log(id);
+    socket.on('mouse',(data,currentId) => {
+    
+        var currentUrl = window.location.href.split('/')[3];
+       // console.log("Current URL: " + currentUrl);
         
-        // var currentUrl = window.location.href;
-        // // Display the URL
-        // console.log("Current URL: " + currentUrl);
-        // console.log(currentUrl.split("/")[3])
-        // const currentId = currentUrl.split("/")[3];
-        // if(currentId!==id) return;
+        if(currentId!==currentUrl) return;
 
         if(data.era){
             erase(255,255);
@@ -63,16 +59,17 @@ function touchMoved() {
         strokeColor: strokeColor,
         eraserStroke: eraserStroke
     }
-    var currentUrl = window.location.href;
-        
-    const currentId = currentUrl.split("/")[3];
-        //if(currentId!==id) return;
-    socket.emit('mouse',data);
+    
+    
+    const currentId = window.location.href.split("/")[3];
+    socket.emit('mouse',data,currentId);
+
+
     return false;
     
 }
 function mouseWheel(){
-    console.log("Works");
+    //console.log("Works");
     const page  = createCanvas(displayWidth,displayHeight);
     console.log(page);
 
@@ -105,5 +102,4 @@ eraserStrengthSlider.addEventListener('input', () => {
     eraserStroke = eraserStrengthSlider.value;
     console.log('Eraser Strength:', eraserStrengthSlider.value);
 });
-
 
