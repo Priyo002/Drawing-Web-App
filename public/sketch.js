@@ -4,36 +4,40 @@ let drawingStroke = 2;
 let eraserStroke = 10;
 let strokeColor = "black";
 let backgroundColor = "white";
+let flag = false;
+
+
+
+socket.on('mouse',(data,currentId) => {
+    
+    var currentUrl = window.location.href.split('/')[3];
+   // console.log("Current URL: " + currentUrl);
+    
+    if(currentId!==currentUrl) return;
+
+    if(data.era){
+        erase(255,255);
+        strokeWeight(data.eraserStroke);
+        line(data.x, data.y, data.px, data.py);
+        noErase();
+    }
+    else{
+        strokeWeight(data.drawingStroke);
+        stroke(data.strokeColor);
+        line(data.x, data.y, data.px, data.py);
+    }
+});
 
 
 function setup() {
-    const Width = window.screen.width;
-    const Height = window.screen.height;
+    
+    const Width = window.innerWidth;
+    const Height = window.innerHeight;
     createCanvas(Width, Height);
     background(backgroundColor);
     strokeWeight(drawingStroke);
     stroke(strokeColor);
 
-    socket.on('mouse',(data,currentId) => {
-    
-        var currentUrl = window.location.href.split('/')[3];
-       // console.log("Current URL: " + currentUrl);
-        
-        if(currentId!==currentUrl) return;
-
-        if(data.era){
-            erase(255,255);
-            strokeWeight(data.eraserStroke);
-            line(data.x, data.y, data.px, data.py);
-            noErase();
-        }
-        else{
-            strokeWeight(data.drawingStroke);
-            stroke(data.strokeColor);
-            line(data.x, data.y, data.px, data.py);
-        }
-    });
-      
 }
 
 function touchMoved() {
@@ -64,15 +68,8 @@ function touchMoved() {
     const currentId = window.location.href.split("/")[3];
     socket.emit('mouse',data,currentId);
 
-
     return false;
     
-}
-function mouseWheel(){
-    //console.log("Works");
-    const page  = createCanvas(displayWidth,displayHeight);
-    console.log(page);
-
 }
 
 const colorButtons = document.querySelectorAll('.color-button');
