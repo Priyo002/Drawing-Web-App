@@ -18,13 +18,13 @@ const io = require('socket.io')(http,{
 app.use(express.json());
 app.use(express.static('public'));
 
-app.post('/screenshot', async (req, res) => {
+app.post('/screenshot1', async (req, res) => {
     const {url} = req.body;
 
     try {
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
-        await page.goto(url); // Take URL from the request body
+        await page.goto(url); 
         const screenshot = await page.screenshot();
         await browser.close();
 
