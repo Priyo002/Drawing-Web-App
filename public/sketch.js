@@ -7,7 +7,7 @@ let backgroundColor = "white";
 let flag = false;
 
 const localurl="http://localhost:3000"
-const awsurl="https://www.drawhub.online"
+let awsurl="https://www.drawhub.online"
 
 
 
