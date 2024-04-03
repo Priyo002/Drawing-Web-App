@@ -18,7 +18,7 @@ const io = require('socket.io')(http,{
 app.use(express.json());
 app.use(express.static('public'));
 
-app.post('/take-screenshot', async (req, res) => {
+app.post('/screenshot', async (req, res) => {
     const {url} = req.body;
 
     try {
