@@ -6,6 +6,9 @@ let strokeColor = "black";
 let backgroundColor = "white";
 let flag = false;
 
+const localurl="http://localhost:3000"
+const awsurl="https://www.drawhub.online"
+
 
 
 socket.on('mouse',(data,currentId) => {
@@ -28,6 +31,43 @@ socket.on('mouse',(data,currentId) => {
     }
 });
 
+document.getElementById("screenshot").addEventListener('click',()=>{
+    
+        // Send a request to the server to take a screenshot
+        let currentUrl = window.location.href.split('/')[3];
+        const url = `${awsurl}/${currentUrl}`;
+
+            // Send a request to the server to take a screenshot
+            fetch(`${awsurl}/take-screenshot`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ url: url })
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.blob();
+                }
+                throw new Error('Network response was not ok.');
+            })
+            .then(blob => {
+                // Create a temporary URL for the screenshot
+                const imgUrl = URL.createObjectURL(blob);
+                
+                // Create an anchor tag
+                const a = document.createElement('a');
+                a.href = imgUrl;
+                a.download = 'screenshot.png'; // Set the filename for the downloaded image
+                a.click();
+
+                // Cleanup
+                URL.revokeObjectURL(imgUrl);
+            })
+            .catch(error => {
+                console.error('Error taking screenshot:', error);
+            });
+    });
 
 function setup() {
     
