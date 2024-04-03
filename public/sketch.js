@@ -34,11 +34,15 @@ socket.on('mouse',(data,currentId) => {
 document.getElementById("screenshot").addEventListener('click',()=>{
     
         // Send a request to the server to take a screenshot
-        let currentUrl = window.location.href.split('/')[3];
-        const url = `${awsurl}/${currentUrl}`;
 
+        let currentUrl = window.location.href.split('/')[3];
+        let temp = awsurl;
+        temp += "/";
+        temp += currentUrl;
+        temp += "/take-screenshot";
             // Send a request to the server to take a screenshot
-            fetch(`${awsurl}/take-screenshot`, {
+            let url
+            fetch(temp, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
