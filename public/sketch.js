@@ -37,9 +37,9 @@ document.getElementById("screenshot").addEventListener('click',()=>{
 
         let currentUrl = window.location.href.split('/')[3];
     
-        let url = awsurl+ "/" + currentUrl;
+        let url = localurl+ "/" + currentUrl;
             // Send a request to the server to take a screenshot
-            fetch(awsurl + "/screenshot1", {
+            fetch(localurl + "/screenshot1", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
