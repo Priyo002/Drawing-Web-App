@@ -10,6 +10,22 @@ const localurl="http://localhost:3000"
 let awsurl="https://www.drawhub.online"
 
 
+const srcElement = document.querySelector("body"),
+btns = document.getElementById("screenshot");
+
+  // adding click event to each btn
+  btns.addEventListener("click", () => {
+    // creating canvas of element using html2canvas
+    html2canvas(srcElement).then(canvas => {
+      // downloading canvas/screenshot
+      const a = document.createElement("a");
+      a.href = canvas.toDataURL();
+      a.download = "screenshot.jpg";
+      a.click();
+    });
+  });
+
+
 
 socket.on('mouse',(data,currentId) => {
     
@@ -31,44 +47,44 @@ socket.on('mouse',(data,currentId) => {
     }
 });
 
-document.getElementById("screenshot").addEventListener('click',()=>{
+// document.getElementById("screenshot").addEventListener('click',()=>{
     
-        // Send a request to the server to take a screenshot
+//         // Send a request to the server to take a screenshot
 
-        let currentUrl = window.location.href.split('/')[3];
+//         let currentUrl = window.location.href.split('/')[3];
     
-        let url = awsurl+ "/" + currentUrl;
-            // Send a request to the server to take a screenshot
-            fetch(awsurl + "/screenshot1", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ url: url })
-            })
-            .then(response => {
-                if (response.ok) {
-                    return response.blob();
-                }
-                throw new Error('Network response was not ok.');
-            })
-            .then(blob => {
-                // Create a temporary URL for the screenshot
-                const imgUrl = URL.createObjectURL(blob);
+//         let url = awsurl+ "/" + currentUrl;
+//             // Send a request to the server to take a screenshot
+//             fetch(awsurl + "/screenshot1", {
+//                 method: 'POST',
+//                 headers: {
+//                     'Content-Type': 'application/json'
+//                 },
+//                 body: JSON.stringify({ url: url })
+//             })
+//             .then(response => {
+//                 if (response.ok) {
+//                     return response.blob();
+//                 }
+//                 throw new Error('Network response was not ok.');
+//             })
+//             .then(blob => {
+//                 // Create a temporary URL for the screenshot
+//                 const imgUrl = URL.createObjectURL(blob);
                 
-                // Create an anchor tag
-                const a = document.createElement('a');
-                a.href = imgUrl;
-                a.download = 'screenshot.png'; // Set the filename for the downloaded image
-                a.click();
+//                 // Create an anchor tag
+//                 const a = document.createElement('a');
+//                 a.href = imgUrl;
+//                 a.download = 'screenshot.png'; // Set the filename for the downloaded image
+//                 a.click();
 
-                // Cleanup
-                URL.revokeObjectURL(imgUrl);
-            })
-            .catch(error => {
-                console.error('Error taking screenshot:', error);
-            });
-    });
+//                 // Cleanup
+//                 URL.revokeObjectURL(imgUrl);
+//             })
+//             .catch(error => {
+//                 console.error('Error taking screenshot:', error);
+//             });
+//     });
 
 function setup() {
     

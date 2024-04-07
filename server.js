@@ -18,26 +18,26 @@ const io = require('socket.io')(http,{
 app.use(express.json());
 app.use(express.static('public'));
 
-app.post('/screenshot1', async (req, res) => {
-    const {url} = req.body;
+// app.post('/screenshot1', async (req, res) => {
+//     const {url} = req.body;
 
-    try {
-        const browser = await puppeteer.launch();
-        const page = await browser.newPage();
-        await page.goto(url); 
-        const screenshot = await page.screenshot();
-        await browser.close();
+//     try {
+//         const browser = await puppeteer.launch();
+//         const page = await browser.newPage();
+//         await page.goto(url); 
+//         const screenshot = await page.screenshot();
+//         await browser.close();
 
-        res.writeHead(200, {
-            'Content-Type': 'image/png',
-            'Content-Length': screenshot.length
-        });
-        res.end(screenshot);
-    } catch (error) {
-        console.error('Error taking screenshot:', error);
-        res.status(500).send('Internal Server Error');
-    }
-});
+//         res.writeHead(200, {
+//             'Content-Type': 'image/png',
+//             'Content-Length': screenshot.length
+//         });
+//         res.end(screenshot);
+//     } catch (error) {
+//         console.error('Error taking screenshot:', error);
+//         res.status(500).send('Internal Server Error');
+//     }
+// });
 
 app.get('/',(req,res)=>{
     res.sendFile(path.join(__dirname+'/public/index.html'));
