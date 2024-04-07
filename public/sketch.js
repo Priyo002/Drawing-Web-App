@@ -10,20 +10,25 @@ const localurl="http://localhost:3000"
 let awsurl="https://www.drawhub.online"
 
 
-const srcElement = document.querySelector("body"),
-btns = document.getElementById("screenshot");
 
-  // adding click event to each btn
-  btns.addEventListener("click", () => {
-    // creating canvas of element using html2canvas
+//Screenshot
+const srcElement = document.querySelector("body");
+document.getElementById("screenshot").addEventListener("click", () => {
     html2canvas(srcElement).then(canvas => {
       // downloading canvas/screenshot
       const a = document.createElement("a");
       a.href = canvas.toDataURL();
-      a.download = "screenshot.jpg";
+      let randomChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ12344567890";
+      let name = "";
+      for(let i=0;i<10;i++){
+        let idx = Math.floor(Math.random()*(randomChar.length));
+        name += randomChar[idx];
+      }
+      console.log(name);
+      a.download = `${name}.jpg`;
       a.click();
     });
-  });
+});
 
 
 
