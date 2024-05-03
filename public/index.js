@@ -13,6 +13,7 @@ document.getElementById('Ckey').addEventListener('click',async ()=>{
     //console.log(temp.key);
     window.open(awsurl + "/" + str);
 })
+
 document.getElementById('btt').addEventListener('click',()=>{
     const t = document.getElementById('txtt').value;
     window.open(awsurl + "/" + t);
