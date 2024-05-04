@@ -19,6 +19,10 @@ app.use(express.json());
 app.use(express.static('public'));
 
 
+app.get('/hello',(req,res)=>{
+    res.send('Working');
+})
+
 app.get('/',(req,res)=>{
     res.sendFile(path.join(__dirname+'/public/index.html'));
 })
